@@ -13,15 +13,15 @@ document.getElementById('generate').addEventListener('click', performAction);
 //Function used by event listener
 function performAction(e) {
     e.preventDefault();
-    let newZip = document.getElementById('zip').value; //UK version
-    let userInput = document.getElementById('feelings').value;
+    const newZip = document.getElementById('zip').value; //UK version
+    const userInput = document.getElementById('feelings').value;
     getWeatherData(baseURL, newZip, apiKey)
     .then(function(weatherData) {
         //Add data to post request
         postData('/addData', {
             date: newDate,
             temperature: weatherData.main.temp,
-            input: userInput})
+            feeling: userInput})
     })
     .then(function(newData) {
         //Update UI
@@ -67,7 +67,7 @@ const postData = async (url = '', data = {}) => {
         body: JSON.stringify({
             date: data.date,
             temperature: data.temperature,
-            input: data.userInput,
+            feeling: data.userInput,
         })
     });
 
@@ -87,7 +87,7 @@ const updateUI = async () => {
         const allData = await request.json();
         document.getElementById('date').innerHTML = 'Today the date is: ' + allData.date;
         document.getElementById('temp').innerHTML = 'Today\'s temperature is: ' + allData.temperature + ' Celsius.';
-        document.getElementById('content').innerHTML = 'I feel ' + allData.input;
+        document.getElementById('content').innerHTML = 'I feel ' + allData.feeling;
     }
     catch(error) {
         console.log("error", error);

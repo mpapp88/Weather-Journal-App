@@ -39,9 +39,9 @@ app.get('/allData', (req, res) => {
 const data = [];
 app.post('/addData', (req, res) => {
     res.send('POST received');
-    projectData['date'] = req.body.date;
-    projectData['temperature'] = req.body.temperature;
-    projectData['input'] = req.body.input;
+    projectData.date = req.body.date;
+    projectData.temperature = req.body.temperature;
+    projectData.feeling = req.body.feeling;
     res.send(projectData);
     console.log(projectData);
     res.send(true);
