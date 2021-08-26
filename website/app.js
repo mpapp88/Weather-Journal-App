@@ -64,11 +64,7 @@ const postData = async (url = '', data = {}) => {
         headers: {
             'Content-type': 'application/json',
         },
-        body: JSON.stringify({
-            date: data.date,
-            temperature: data.temperature,
-            feeling: data.userInput,
-        })
+        body: JSON.stringify(data)
     });
 
     try {
